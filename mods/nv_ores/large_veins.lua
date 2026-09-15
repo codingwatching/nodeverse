@@ -74,6 +74,8 @@ function nv_ores.get_large_vein_meta(seed, index)
         aragonite = 50,
         -- Sodium ores
         halite = 80,
+        -- Magnesium ores
+        brucite = 50,
     })
     r.node = nv_ores.node_types[r.node]
     return r

@@ -35,6 +35,8 @@ Allocated: 11
 1           aragonite
 1         sodium ores
 1           halite
+1         magnesium ores
+1           brucite
 1  .... surface deposit ores
 1           sulfur
 1           solid_ammonia
@@ -378,6 +380,40 @@ local function register_ores()
             walkable = true,
             buildable_to = false,
             drop = "nv_ores:sodium_chloride",
+            groups = {cracky = 3},
+        }, 4
+    )
+    
+    -- BRUCITE
+    -- Mg(OH)2
+    register_node(
+        "brucite", {
+            drawtype = "normal",
+            visual_scale = 1.0,
+            tiles = {
+                "nv_brucite.png",
+                "nv_brucite.png^[transformR180",
+                "nv_brucite.png^[transformR180",
+                "nv_brucite.png^[transformR90",
+                "nv_brucite.png",
+                "nv_brucite.png^[transformR90"
+            },
+            overlay_tiles = {
+                "",
+                "",
+                {name = "nv_ore_overlay.png"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png"}
+            },
+            use_texture_alpha = "blend",
+            paramtype = "light",
+            paramtype2 = "facedir",
+            place_param2 = 0,
+            sunlight_propagates = false,
+            walkable = true,
+            buildable_to = false,
+            drop = "nv_ores:magnesium_hydroxide",
             groups = {cracky = 3},
         }, 4
     )
