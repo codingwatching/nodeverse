@@ -108,7 +108,7 @@ if nv_planetgen then
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_hydroxide 1",
-                "nv_crafting:basic_fuel 2",
+                "nv_crafting:basic_fuel 1",
             },
             level = 1,
         })

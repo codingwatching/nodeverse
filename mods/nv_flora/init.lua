@@ -20,6 +20,7 @@ dofile(minetest.get_modpath("nv_flora") .. "/branched_plants.lua")
 dofile(minetest.get_modpath("nv_flora") .. "/vines.lua")
 dofile(minetest.get_modpath("nv_flora") .. "/lilypads.lua")
 dofile(minetest.get_modpath("nv_flora") .. "/nodetypes.lua")
+dofile(minetest.get_modpath("nv_flora") .. "/itemtypes.lua")
 
 if minetest.register_mapgen_script then
     minetest.register_mapgen_script(minetest.get_modpath("nv_flora") .. "/mapgen.lua")
