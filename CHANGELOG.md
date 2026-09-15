@@ -2,7 +2,7 @@
 ## [0.5.0] - unreleased
 ### Added
  - Mods `nv_ores` and `nv_crafting`.
- - 16 new nodes.
+ - 18 new nodes.
  - 10 new items.
 
 ### Changed

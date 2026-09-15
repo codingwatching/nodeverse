@@ -68,7 +68,7 @@ minetest.register_node(
         end,
         description = "Furnace Mk 1",
         short_description = "Furnace Mk 1",
-    }, 4
+    }
 )
 
 minetest.register_node(
@@ -97,7 +97,7 @@ minetest.register_node(
         groups = {crumbly = 2, falling_node = 1},
         description = "Silicate sand",
         short_description = "Silicate sand",
-    }, 4
+    }
 )
 
 minetest.register_node(
@@ -126,7 +126,28 @@ minetest.register_node(
         groups = {cracky = 1},
         description = "Gray brick",
         short_description = "Gray brick",
-    }, 4
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:torch", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_torch.png"
+        },
+        mesh = "nv_torch.obj",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        light_source = 7,
+        sunlight_propagates = true,
+        walkable = false,
+        buildable_to = true,
+        groups = {choppy = 3},
+        description = "Torch",
+        short_description = "Torch",
+    }
 )
 
 minetest.register_craftitem("nv_crafting:basic_fuel", {
@@ -185,6 +206,15 @@ if nv_planetgen then
             output = "nv_crafting:basic_fuel",
             type = "shapeless",
             recipe = {
+                "nv_flora:polymer_planks 1",
+            },
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:torch",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:basic_fuel 1",
                 "nv_flora:polymer_planks 1",
             },
         })

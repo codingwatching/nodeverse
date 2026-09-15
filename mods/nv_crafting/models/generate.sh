@@ -21,3 +21,4 @@ generate_file() {
 }
 
 generate_file nv_furnace1
+generate_file nv_torch
