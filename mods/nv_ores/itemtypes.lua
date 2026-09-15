@@ -7,13 +7,21 @@ This file defines items that are not associated with a particular nodetype.
 
 --[[
  # ITEM TYPES
-Allocated: 1
+Allocated: 7
+1       carbon
 1       iron_oxide
 1       aluminium_hydroxide
 1       calcium_carbonate
 1       sodium_chloride
-1       sulfur
+1       magnesium_hydroxide
+1       sulfur_pieces
 ]]
+
+minetest.register_craftitem("nv_ores:carbon", {
+    description = "Carbon",
+    short_description = "Carbon",
+    inventory_image = "nv_carbon.png",
+})
 
 minetest.register_craftitem("nv_ores:iron_oxide", {
     description = "Iron oxide",

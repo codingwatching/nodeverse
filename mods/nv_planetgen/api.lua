@@ -93,6 +93,7 @@ end
 local function mapgen_callback(minp, maxp, blockseed)
     local GN = minetest.get_mapgen_object("gennotify")
     local meta_nodes = GN["custom"]["nv_planetgen:meta_nodes"]
+    if meta_nodes == nil then return end
     for n, entry in ipairs(meta_nodes) do
         local meta = minetest.get_meta(entry.pos)
         local tab = meta:to_table()

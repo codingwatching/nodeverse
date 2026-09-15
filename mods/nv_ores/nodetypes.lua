@@ -21,6 +21,8 @@ end
  # NODE TYPES
 Allocated: 11
 10 .... large vein ores
+1         carbon ores
+1           anthracite
 4         iron ores
 1           hematite
 1           magnetite
@@ -44,6 +46,40 @@ Allocated: 11
 ]]--
 
 local function register_ores()
+    -- ANTHRACITE
+    -- C
+    register_node(
+        "anthracite", {
+            drawtype = "normal",
+            visual_scale = 1.0,
+            tiles = {
+                "nv_anthracite.png",
+                "nv_anthracite.png^[transformR180",
+                "nv_anthracite.png^[transformR180",
+                "nv_anthracite.png^[transformR90",
+                "nv_anthracite.png",
+                "nv_anthracite.png^[transformR90"
+            },
+            overlay_tiles = {
+                "",
+                "",
+                {name = "nv_ore_overlay.png"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png"}
+            },
+            use_texture_alpha = "blend",
+            paramtype = "light",
+            paramtype2 = "facedir",
+            place_param2 = 0,
+            sunlight_propagates = false,
+            walkable = true,
+            buildable_to = false,
+            drop = "nv_ores:carbon",
+            groups = {cracky = 2},
+        }, 4
+    )
+
     -- HEMATITE
     -- Fe2O3
     register_node(

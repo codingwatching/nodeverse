@@ -57,26 +57,39 @@ function nv_ores.get_large_vein_meta(seed, index)
     r.order = 100
     r.callback = large_vein_callback
     -- Large vein-specific
-    r.min_height = G:next(0, 150) - 100
-    r.max_height = r.min_height + G:next(20, 50)
-    r.node = gen_weighted(G, {
-        -- Iron ores
-        hematite = 100,
-        magnetite = 100,
-        goethite = 50,
-        limonite = 50,
-        -- Aluminium ores
-        gibbsite = 150,
-        boehmite = 70,
-        diaspore = 70,
-        -- Calcium ores
-        calcite = 70,
-        aragonite = 50,
-        -- Sodium ores
-        halite = 80,
-        -- Magnesium ores
-        brucite = 50,
-    })
+    if index == 1 then
+        r.min_height = -100
+        r.max_height = 100
+    else
+        r.min_height = G:next(0, 150) - 100
+        r.max_height = r.min_height + G:next(20, 50)
+    end
+    if index == 1
+    and meta.atmosphere ~= "scorching"
+    and meta.life == "dead" then
+        r.node = "anthracite"
+    else
+        r.node = gen_weighted(G, {
+            -- Iron ores
+            hematite = 100,
+            magnetite = 100,
+            goethite = 50,
+            limonite = 50,
+            -- Aluminium ores
+            gibbsite = 150,
+            boehmite = 70,
+            diaspore = 70,
+            -- Calcium ores
+            calcite = 70,
+            aragonite = 50,
+            -- Sodium ores
+            halite = 80,
+            -- Magnesium ores
+            brucite = 50,
+            -- Carbon ores
+            anthracite = 40,
+        })
+    end
     r.node = nv_ores.node_types[r.node]
     return r
 end
