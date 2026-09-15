@@ -1,9 +1,9 @@
 # Changelog
 ## [0.5.0] - unreleased
 ### Added
- - Mod `nv_ores`.
- - 12 new nodes.
- - 7 new items.
+ - Mods `nv_ores` and `nv_crafting`.
+ - 15 new nodes.
+ - 9 new items.
 
 ### Changed
  - Reworked cave generation once again, making them larger and less homogeneously distributed.

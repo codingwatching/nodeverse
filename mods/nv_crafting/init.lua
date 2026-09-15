@@ -71,6 +71,12 @@ minetest.register_node(
     }, 4
 )
 
+minetest.register_craftitem("nv_crafting:basic_fuel", {
+    description = "Basic fuel",
+    short_description = "Basic fuel",
+    inventory_image = "nv_basic_fuel.png",
+})
+
 if nv_planetgen then
     nv_inventory.register_manual_recipe({
         output = "nv_crafting:furnace1",
@@ -81,11 +87,28 @@ if nv_planetgen then
     })
     
     if nv_ores then
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:basic_fuel",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:carbon 1",
+            },
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:basic_fuel",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:sulfur_pieces 3",
+            },
+        })
+    
         nv_crafting.register_furnace_recipe({
             output = "nv_ores:aluminium_oxide",
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_hydroxide 1",
+                "nv_crafting:basic_fuel 2",
             },
             level = 1,
         })

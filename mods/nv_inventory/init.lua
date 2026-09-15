@@ -37,8 +37,9 @@ function nv_inventory.get_craft_formspec(player, recipes)
                 item_name = string.sub(item, 1, index - 1)
             end
             r = r .. string.format([[
-                item_image[1,%g;1,1;%s]
+                item_image[%g,%g;1,1;%s]
             ]],
+                (n - 1) * 1.5 + 1,
                 y,
                 item_name
             )
@@ -48,9 +49,10 @@ function nv_inventory.get_craft_formspec(player, recipes)
             end
             r = r .. string.format([[
                 style_type[label;textcolor=%s]
-                label[1.8,%g;%s]
+                label[%g,%g;%s]
             ]],
                 color,
+                (n - 1) * 1.5 + 1.8,
                 y + 0.8,
                 tostring(item_count)
             )

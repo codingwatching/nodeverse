@@ -19,8 +19,8 @@ end
 
 --[[
  # NODE TYPES
-Allocated: 11
-10 .... large vein ores
+Allocated: 14
+12 .... large vein ores
 1         carbon ores
 1           anthracite
 4         iron ores
@@ -39,7 +39,7 @@ Allocated: 11
 1           halite
 1         magnesium ores
 1           brucite
-1  .... surface deposit ores
+2  .... surface deposit ores
 1           sulfur
 1           solid_ammonia
 

@@ -7,7 +7,8 @@ This file defines items that are not associated with a particular nodetype.
 
 --[[
  # ITEM TYPES
-Allocated: 7
+Allocated: 8
+7     ores
 1       carbon
 1       iron_oxide
 1       aluminium_hydroxide
@@ -15,6 +16,8 @@ Allocated: 7
 1       sodium_chloride
 1       magnesium_hydroxide
 1       sulfur_pieces
+1     utility
+1       basic_fuel
 ]]
 
 minetest.register_craftitem("nv_ores:carbon", {
