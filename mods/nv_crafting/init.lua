@@ -57,7 +57,7 @@ minetest.register_node(
         paramtype2 = "facedir",
         place_param2 = 0,
         sunlight_propagates = true,
-        walkable = false,
+        walkable = true,
         buildable_to = false,
         groups = {cracky = 1, falling_node = 1},
         on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
@@ -107,9 +107,9 @@ minetest.register_node(
         tiles = {
             "nv_gray_brick.png",
             "nv_gray_brick.png",
-            "nv_gray_brick.png^[transformR180",
-            "nv_gray_brick.png^[transformR90",
-            "nv_gray_brick.png^[transformR270",
+            "nv_gray_brick.png",
+            "nv_gray_brick.png",
+            "nv_gray_brick.png",
             "nv_gray_brick.png",
         },
         paramtype = "light",
@@ -126,6 +126,64 @@ minetest.register_node(
         groups = {cracky = 1},
         description = "Gray brick",
         short_description = "Gray brick",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:red_brick", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_red_brick.png",
+            "nv_red_brick.png",
+            "nv_red_brick.png",
+            "nv_red_brick.png",
+            "nv_red_brick.png",
+            "nv_red_brick.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_stone", gain = 0.4, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        description = "Red brick",
+        short_description = "Red brick",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:black_brick", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_black_brick.png",
+            "nv_black_brick.png",
+            "nv_black_brick.png",
+            "nv_black_brick.png",
+            "nv_black_brick.png",
+            "nv_black_brick.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_stone", gain = 0.4, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        description = "Black brick",
+        short_description = "Black brick",
     }
 )
 
@@ -172,6 +230,18 @@ if nv_planetgen then
             "nv_planetgen:crude_silicate 4",
         },
     })
+    
+    if nv_flora then
+        nv_crafting.register_furnace_recipe({
+            output = "nv_ores:carbon",
+            type = "shapeless",
+            recipe = {
+                "nv_flora:polymer_planks 1",
+                "nv_crafting:basic_fuel 1",
+            },
+            level = 1,
+        })
+    end
     
     if nv_ores then
         nv_inventory.register_manual_recipe({
@@ -227,6 +297,24 @@ if nv_planetgen then
             recipe = {
                 "nv_ores:aluminium_oxide 1",
                 "nv_planetgen:crude_silicate 1",
+            },
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:red_brick",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:aluminium_oxide 1",
+                "nv_ores:iron_oxide 1",
+            },
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:black_brick",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:aluminium_oxide 1",
+                "nv_ores:carbon 1",
             },
         })
     end
