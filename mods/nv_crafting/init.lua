@@ -57,9 +57,9 @@ minetest.register_node(
         paramtype2 = "facedir",
         place_param2 = 0,
         sunlight_propagates = true,
-        walkable = true,
+        walkable = false,
         buildable_to = false,
-        groups = {cracky = 1},
+        groups = {cracky = 1, falling_node = 1},
         on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
             nv_gui.show_formspec_raw(clicker,
                 get_furnace_formspec(clicker, 1),
@@ -71,6 +71,64 @@ minetest.register_node(
     }, 4
 )
 
+minetest.register_node(
+    "nv_crafting:silicate_sand", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_silicate_sand.png",
+            "nv_silicate_sand.png",
+            "nv_silicate_sand.png^[transformR180",
+            "nv_silicate_sand.png^[transformR90",
+            "nv_silicate_sand.png^[transformR270",
+            "nv_silicate_sand.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_sediment", gain = 0.07, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {crumbly = 2, falling_node = 1},
+        description = "Silicate sand",
+        short_description = "Silicate sand",
+    }, 4
+)
+
+minetest.register_node(
+    "nv_crafting:gray_brick", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_gray_brick.png",
+            "nv_gray_brick.png",
+            "nv_gray_brick.png^[transformR180",
+            "nv_gray_brick.png^[transformR90",
+            "nv_gray_brick.png^[transformR270",
+            "nv_gray_brick.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_stone", gain = 0.4, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        description = "Gray brick",
+        short_description = "Gray brick",
+    }, 4
+)
+
 minetest.register_craftitem("nv_crafting:basic_fuel", {
     description = "Basic fuel",
     short_description = "Basic fuel",
@@ -78,6 +136,14 @@ minetest.register_craftitem("nv_crafting:basic_fuel", {
 })
 
 if nv_planetgen then
+    nv_inventory.register_manual_recipe({
+        output = "nv_crafting:silicate_sand",
+        type = "shapeless",
+        recipe = {
+            "nv_planetgen:crude_silicate 1",
+        },
+    })
+    
     nv_inventory.register_manual_recipe({
         output = "nv_crafting:furnace1",
         type = "shapeless",
@@ -111,6 +177,27 @@ if nv_planetgen then
                 "nv_crafting:basic_fuel 1",
             },
             level = 1,
+        })
+    end
+    
+    if nv_flora then
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:basic_fuel",
+            type = "shapeless",
+            recipe = {
+                "nv_flora:polymer_planks 1",
+            },
+        })
+    end
+    
+    if nv_ores then
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:gray_brick",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:aluminium_oxide 1",
+                "nv_planetgen:crude_silicate 1",
+            },
         })
     end
 end
