@@ -20,7 +20,7 @@ local function get_furnace_formspec(player, level)
             table.insert(recipes, recipe)
         end
     end
-    local base_formspec = nv_inventory.get_craft_formspec(player, nv_crafting.furnace_recipes)
+    local base_formspec = nv_inventory.get_craft_formspec(player, recipes)
     return base_formspec
 end
 
@@ -66,8 +66,34 @@ minetest.register_node(
                 "furnace"
             )
         end,
-        description = "Furnace Mk 1",
-        short_description = "Furnace Mk 1",
+        description = "Furnace",
+        short_description = "Furnace",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:furnace2", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_furnace2.png"
+        },
+        mesh = "nv_furnace2.obj",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+            nv_gui.show_formspec_raw(clicker,
+                get_furnace_formspec(clicker, 2),
+                "furnace"
+            )
+        end,
+        description = "Blast furnace",
+        short_description = "Blast furnace",
     }
 )
 
@@ -188,6 +214,35 @@ minetest.register_node(
 )
 
 minetest.register_node(
+    "nv_crafting:concrete", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_concrete.png",
+            "nv_concrete.png",
+            "nv_concrete.png",
+            "nv_concrete.png",
+            "nv_concrete.png",
+            "nv_concrete.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_stone", gain = 0.4, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        description = "Concrete",
+        short_description = "Concrete",
+    }
+)
+
+minetest.register_node(
     "nv_crafting:torch", {
         drawtype = "mesh",
         visual_scale = 1.0,
@@ -202,6 +257,7 @@ minetest.register_node(
         sunlight_propagates = true,
         walkable = false,
         buildable_to = true,
+        drop = "",
         groups = {choppy = 3},
         description = "Torch",
         short_description = "Torch",
@@ -212,6 +268,12 @@ minetest.register_craftitem("nv_crafting:basic_fuel", {
     description = "Basic fuel",
     short_description = "Basic fuel",
     inventory_image = "nv_basic_fuel.png",
+})
+
+minetest.register_craftitem("nv_crafting:iron", {
+    description = "Iron",
+    short_description = "Iron",
+    inventory_image = "nv_iron.png",
 })
 
 if nv_planetgen then
@@ -292,6 +354,15 @@ if nv_planetgen then
     
     if nv_ores then
         nv_inventory.register_manual_recipe({
+            output = "nv_crafting:concrete",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:aluminium_oxide 1",
+                "nv_ores:calcium_carbonate 1",
+            },
+        })
+    
+        nv_inventory.register_manual_recipe({
             output = "nv_crafting:gray_brick",
             type = "shapeless",
             recipe = {
@@ -316,6 +387,27 @@ if nv_planetgen then
                 "nv_ores:aluminium_oxide 1",
                 "nv_ores:carbon 1",
             },
+        })
+        
+        if nv_flora then
+            nv_inventory.register_manual_recipe({
+                output = "nv_crafting:furnace2",
+                type = "shapeless",
+                recipe = {
+                    "nv_crafting:concrete 4",
+                    "nv_flora:polymer_planks 2",
+                },
+            })
+        end
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:iron",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:iron_oxide 1",
+                "nv_ores:carbon 1",
+            },
+            level = 2,
         })
     end
 end
