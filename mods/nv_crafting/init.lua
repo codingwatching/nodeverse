@@ -38,12 +38,44 @@ local function furnace_receive_fields_callback(player, fields)
 	        end
 	        inv:add_item("craftresult", recipe.output)
 	        local formspec = get_furnace_formspec(player)
-			nv_gui.show_formspec_raw(player, formspec)
+			nv_gui.show_formspec_raw(player, formspec, "furnace")
 		end
 	end
 end
 
 nv_gui.register_callback("furnace", furnace_receive_fields_callback)
+
+nv_crafting.anvil_recipes = {}
+
+function nv_crafting.register_anvil_recipe(recipe)
+    table.insert(nv_crafting.anvil_recipes, recipe)
+end
+
+local function get_anvil_formspec(player)
+    local base_formspec = nv_inventory.get_craft_formspec(player, nv_crafting.anvil_recipes)
+    return base_formspec
+end
+
+local function anvil_receive_fields_callback(player, fields)
+    local name = player:get_player_name()
+	for field, value in pairs(fields) do
+	    if field == "exit" then
+			minetest.close_formspec(name, "anvil")
+	    elseif string.sub(field, 1, 6) == "recipe" then
+	        local index = tonumber(string.sub(field, 7))
+	        local recipe = nv_crafting.anvil_recipes[index]
+	        local inv = minetest.get_inventory({type = "player", name = name})
+	        for _, item in ipairs(recipe.recipe) do
+	            inv:remove_item("main", item)
+	        end
+	        inv:add_item("craftresult", recipe.output)
+	        local formspec = get_anvil_formspec(player)
+			nv_gui.show_formspec_raw(player, formspec, "anvil")
+		end
+	end
+end
+
+nv_gui.register_callback("anvil", anvil_receive_fields_callback)
 
 minetest.register_node(
     "nv_crafting:furnace1", {
@@ -253,7 +285,7 @@ minetest.register_node(
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
-        light_source = 7,
+        light_source = 11,
         sunlight_propagates = true,
         walkable = false,
         buildable_to = true,
@@ -261,6 +293,74 @@ minetest.register_node(
         groups = {choppy = 3},
         description = "Torch",
         short_description = "Torch",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:lamp", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_lamp.png"
+        },
+        mesh = "nv_lamp.obj",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        light_source = 16,
+        sunlight_propagates = true,
+        walkable = false,
+        buildable_to = false,
+        groups = {choppy = 2},
+        description = "Lamp",
+        short_description = "Lamp",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:lamp_yellow", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_lamp_yellow.png"
+        },
+        mesh = "nv_lamp.obj",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        light_source = 16,
+        sunlight_propagates = true,
+        walkable = false,
+        buildable_to = false,
+        groups = {choppy = 2},
+        description = "Yellow lamp",
+        short_description = "Yellow lamp",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:anvil", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_anvil.png"
+        },
+        mesh = "nv_anvil.obj",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {choppy = 1},
+        on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+            nv_gui.show_formspec_raw(clicker,
+                get_anvil_formspec(clicker),
+                "anvil"
+            )
+        end,
+        description = "Anvil",
+        short_description = "Anvil",
     }
 )
 
@@ -406,6 +506,34 @@ if nv_planetgen then
             recipe = {
                 "nv_ores:iron_oxide 1",
                 "nv_ores:carbon 1",
+            },
+            level = 2,
+        })
+        
+        nv_crafting.register_anvil_recipe({
+            output = "nv_crafting:lamp",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:iron 1",
+                "nv_crafting:basic_fuel 1",
+            },
+            level = 2,
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:anvil",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:iron 4",
+            },
+        })
+        
+        nv_crafting.register_anvil_recipe({
+            output = "nv_crafting:lamp_yellow",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:lamp 1",
+                "nv_ores:sodium_chloride 1",
             },
             level = 2,
         })
