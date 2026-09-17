@@ -252,9 +252,9 @@ minetest.register_node(
         tiles = {
             "nv_concrete.png",
             "nv_concrete.png",
-            "nv_concrete.png",
-            "nv_concrete.png",
-            "nv_concrete.png",
+            "nv_concrete.png^[transformR180",
+            "nv_concrete.png^[transformR90",
+            "nv_concrete.png^[transformR270",
             "nv_concrete.png",
         },
         paramtype = "light",
@@ -361,6 +361,35 @@ minetest.register_node(
         end,
         description = "Anvil",
         short_description = "Anvil",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:marble", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_marble.png",
+            "nv_marble.png",
+            "nv_marble.png^[transformR180",
+            "nv_marble.png^[transformR90",
+            "nv_marble.png^[transformR270",
+            "nv_marble.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_stone", gain = 0.4, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        description = "Marble",
+        short_description = "Marble",
     }
 )
 
@@ -506,6 +535,16 @@ if nv_planetgen then
             recipe = {
                 "nv_ores:iron_oxide 1",
                 "nv_ores:carbon 1",
+            },
+            level = 2,
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:marble",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:calcium_carbonate 1",
+                "nv_crafting:basic_fuel 1",
             },
             level = 2,
         })
