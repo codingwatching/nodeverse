@@ -335,7 +335,7 @@ local function register_tall_grasses()
                 type = "fixed",
                 fixed = {{-0.5, -0.5, -0.5, 0.5, 6/16, 0.5}}
             },
-            drop = "",
+            drop = "nv_flora:polymer_fiber",
             after_dig_node = default_dig_callback,
             groups = {snappy = 1},
         } end
@@ -373,7 +373,7 @@ local function register_tall_grasses()
                 type = "fixed",
                 fixed = {{-0.5, -0.5, -0.5, 0.5, 6/16, 0.5}}
             },
-            drop = "",
+            drop = "nv_flora:polymer_fiber",
             after_dig_node = default_dig_callback,
             groups = {snappy = 1},
         } end
@@ -411,7 +411,7 @@ local function register_tall_grasses()
                 type = "fixed",
                 fixed = {{-0.5, -0.5, -0.5, 0.5, 6/16, 0.5}}
             },
-            drop = "",
+            drop = "nv_flora:polymer_fiber",
             after_dig_node = default_dig_callback,
             groups = {snappy = 1},
         } end
@@ -446,7 +446,7 @@ local function register_stems()
             sunlight_propagates = false,
             walkable = true,
             buildable_to = false,
-            drop = "nv_flora:polymer_planks",
+            drop = "nv_flora:polymer_planks 2",
             after_dig_node = default_dig_callback,
             groups = {choppy = 1},
             nv_vineable = true,
@@ -478,7 +478,7 @@ local function register_stems()
             sunlight_propagates = false,
             walkable = true,
             buildable_to = false,
-            drop = "nv_flora:polymer_planks",
+            drop = "nv_flora:polymer_planks 2",
             after_dig_node = default_dig_callback,
             groups = {choppy = 1},
             nv_vineable = true,

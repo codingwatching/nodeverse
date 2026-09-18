@@ -275,6 +275,30 @@ minetest.register_node(
 )
 
 minetest.register_node(
+    "nv_crafting:polymer", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_polymer.png",
+            "nv_polymer.png",
+            "nv_polymer.png",
+            "nv_polymer.png",
+            "nv_polymer.png",
+            "nv_polymer.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {choppy = 2},
+        description = "Polymer",
+        short_description = "Polymer",
+    }
+)
+
+minetest.register_node(
     "nv_crafting:torch", {
         drawtype = "mesh",
         visual_scale = 1.0,
@@ -479,11 +503,20 @@ if nv_planetgen then
                 "nv_flora:polymer_planks 1",
             },
         })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:polymer",
+            type = "shapeless",
+            recipe = {
+                "nv_flora:polymer_planks 1",
+                "nv_flora:polymer_fiber 1",
+            },
+        })
     end
     
     if nv_ores then
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:concrete",
+            output = "nv_crafting:concrete 2",
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_oxide 1",
@@ -492,7 +525,7 @@ if nv_planetgen then
         })
     
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:gray_brick",
+            output = "nv_crafting:gray_brick 2",
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_oxide 1",
@@ -501,7 +534,7 @@ if nv_planetgen then
         })
         
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:red_brick",
+            output = "nv_crafting:red_brick 2",
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_oxide 1",
@@ -510,7 +543,7 @@ if nv_planetgen then
         })
         
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:black_brick",
+            output = "nv_crafting:black_brick 2",
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_oxide 1",
