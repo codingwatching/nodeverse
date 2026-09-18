@@ -25,3 +25,4 @@ generate_file nv_furnace2
 generate_file nv_torch
 generate_file nv_lamp
 generate_file nv_anvil
+generate_file nv_bed

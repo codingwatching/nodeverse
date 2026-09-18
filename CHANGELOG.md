@@ -2,12 +2,13 @@
 ## [0.5.0] - unreleased
 ### Added
  - Mods `nv_ores`, `nv_inventory` and `nv_crafting`.
- - 25 new nodes.
+ - 26 new nodes.
  - 12 new items.
  - An inventory tab in the menu.
  - Crafting in-hand and in various stations.
  - Ores, as veins and surface deposits.
  - Nodes for construction, lighting and decoration.
+ - Beds, for sleeping through the night.
 
 ### Changed
  - Reworked cave generation once again, making them larger and less homogeneously distributed.

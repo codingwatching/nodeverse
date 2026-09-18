@@ -417,6 +417,39 @@ minetest.register_node(
     }
 )
 
+minetest.register_node(
+    "nv_crafting:bed", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_bed.png",
+        },
+        mesh = "nv_bed.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 1.5}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 1.5}
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {choppy = 3},
+        on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+            time = core.get_timeofday()
+            if time > 0.75 or time < 0.25 then
+                core.set_timeofday(0.25)
+            end
+        end,
+        description = "Bed",
+        short_description = "Bed",
+    }
+)
+
 minetest.register_craftitem("nv_crafting:basic_fuel", {
     description = "Basic fuel",
     short_description = "Basic fuel",
@@ -501,6 +534,15 @@ if nv_planetgen then
             recipe = {
                 "nv_crafting:basic_fuel 1",
                 "nv_flora:polymer_planks 1",
+            },
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:bed",
+            type = "shapeless",
+            recipe = {
+                "nv_flora:polymer_planks 2",
+                "nv_flora:polymer_fiber 4",
             },
         })
         
