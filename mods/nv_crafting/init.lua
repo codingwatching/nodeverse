@@ -85,6 +85,14 @@ minetest.register_node(
             "nv_furnace1.png"
         },
         mesh = "nv_furnace1.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.5 + 0.125, -0.5, -0.5 + 0.125, 0.5 - 0.125, 0.5 - 0.125, 0.5 - 0.125}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.5 + 0.125, -0.5, -0.5 + 0.125, 0.5 - 0.125, 0.5 - 0.125, 0.5 - 0.125}
+        },
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
@@ -111,6 +119,14 @@ minetest.register_node(
             "nv_furnace2.png"
         },
         mesh = "nv_furnace2.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.5 + 0.125, -0.5, -0.5 + 0.125, 0.5 - 0.125, 0.5 - 0.0625, 0.5 - 0.125}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.5 + 0.125, -0.5, -0.5 + 0.125, 0.5 - 0.125, 0.5 - 0.0625, 0.5 - 0.125}
+        },
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
@@ -306,6 +322,14 @@ minetest.register_node(
             "nv_torch.png"
         },
         mesh = "nv_torch.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.0625, -0.5, -0.0625, 0.0625, 0.0, 0.0625}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.0625, -0.5, -0.0625, 0.0625, 0.0, 0.0625}
+        },
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
@@ -328,6 +352,14 @@ minetest.register_node(
             "nv_lamp.png"
         },
         mesh = "nv_lamp.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.125, -0.5, -0.125, 0.125, 0.125, 0.125}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.125, -0.5, -0.125, 0.125, 0.125, 0.125}
+        },
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
@@ -349,6 +381,14 @@ minetest.register_node(
             "nv_lamp_yellow.png"
         },
         mesh = "nv_lamp.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.125, -0.5, -0.125, 0.125, 0.125, 0.125}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.125, -0.5, -0.125, 0.125, 0.125, 0.125}
+        },
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
@@ -370,6 +410,14 @@ minetest.register_node(
             "nv_anvil.png"
         },
         mesh = "nv_anvil.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.25, -0.5, -0.25, 0.25, 0.125, 0.25}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.25, -0.5, -0.25, 0.25, 0.125, 0.25}
+        },
         paramtype = "light",
         paramtype2 = "facedir",
         place_param2 = 0,
