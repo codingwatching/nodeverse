@@ -2,7 +2,7 @@
 ## [0.5.0] - unreleased
 ### Added
  - Mods `nv_ores`, `nv_inventory` and `nv_crafting`.
- - 26 new nodes.
+ - 29 new nodes.
  - 12 new items.
  - An inventory tab in the menu.
  - Crafting in-hand and in various stations.

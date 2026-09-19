@@ -498,6 +498,78 @@ minetest.register_node(
     }
 )
 
+minetest.register_node(
+    "nv_crafting:glass", {
+        drawtype = "glasslike",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_soda_glass.png",
+            "nv_soda_glass.png",
+            "nv_soda_glass.png^[transformR180",
+            "nv_soda_glass.png^[transformR90",
+            "nv_soda_glass.png^[transformR270",
+            "nv_soda_glass.png",
+        },
+        use_texture_alpha = "blend",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 3},
+        description = "Clear glass",
+        short_description = "Clear glass",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:glass_green", {
+        drawtype = "glasslike",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_soda_glass.png^[multiply:#4a4",
+            "nv_soda_glass.png",
+            "nv_soda_glass.png^[transformR180",
+            "nv_soda_glass.png^[transformR90",
+            "nv_soda_glass.png^[transformR270",
+            "nv_soda_glass.png",
+        },
+        use_texture_alpha = "blend",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 3},
+        description = "Green glass",
+        short_description = "Green glass",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:glass_orange", {
+        drawtype = "glasslike",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_soda_glass.png^[multiply:#c95",
+            "nv_soda_glass.png",
+            "nv_soda_glass.png^[transformR180",
+            "nv_soda_glass.png^[transformR90",
+            "nv_soda_glass.png^[transformR270",
+            "nv_soda_glass.png",
+        },
+        use_texture_alpha = "blend",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 3},
+        description = "Orange glass",
+        short_description = "Orange glass",
+    }
+)
+
 minetest.register_craftitem("nv_crafting:basic_fuel", {
     description = "Basic fuel",
     short_description = "Basic fuel",
@@ -679,7 +751,6 @@ if nv_planetgen then
                 "nv_crafting:iron 1",
                 "nv_crafting:basic_fuel 1",
             },
-            level = 2,
         })
         
         nv_inventory.register_manual_recipe({
@@ -696,6 +767,40 @@ if nv_planetgen then
             recipe = {
                 "nv_crafting:lamp 1",
                 "nv_ores:sodium_chloride 1",
+            },
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:glass 2",
+            type = "shapeless",
+            recipe = {
+                "nv_planetgen:crude_silicate 1",
+                "nv_ores:sodium_chloride 1",
+                "nv_crafting:basic_fuel 1",
+            },
+            level = 2,
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:glass_green 2",
+            type = "shapeless",
+            recipe = {
+                "nv_planetgen:crude_silicate 1",
+                "nv_ores:sodium_chloride 1",
+                "nv_ores:iron_oxide 1",
+                "nv_crafting:basic_fuel 1",
+            },
+            level = 2,
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:glass_orange 2",
+            type = "shapeless",
+            recipe = {
+                "nv_planetgen:crude_silicate 1",
+                "nv_ores:sodium_chloride 1",
+                "nv_ores:sulfur_pieces 1",
+                "nv_crafting:basic_fuel 1",
             },
             level = 2,
         })
