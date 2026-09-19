@@ -1,5 +1,5 @@
 local function post_processing_callback(minp, maxp, area, offset, A, A1, A2, mapping, planet, ground_buffer)
-    local f = io.open(minetest.get_worldpath() .. "/nv_universe.dug", "rt")
+    local f = io.open(minetest.get_worldpath() .. "/nv_universe.dug", "r")
     local dug = minetest.deserialize(f:read())
     f:close()
     if not dug[false] then

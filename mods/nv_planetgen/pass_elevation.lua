@@ -182,23 +182,23 @@ local function get_generators(planet)
     if memoized_generators[planet.seed] == nil then
         memoized_generators[planet.seed] = {
             ocean_elevation = PerlinWrapper({
-                offset=0, scale=0.5, spread={x=500, y=500}, seed=planet.seed,
+                offset=0, scale=0.5, spread={x=500, y=500, z=0}, seed=planet.seed,
                 octaves=3, persist=0.5, lacunarity=2.0, flags="defaults"
             }),
             mountain_roughness = PerlinWrapper({
-                offset=0, scale=0.5, spread={x=300, y=300}, seed=planet.seed,
+                offset=0, scale=0.5, spread={x=300, y=300, z=0}, seed=planet.seed,
                 octaves=3, persist=0.5, lacunarity=2.0, flags="defaults"
             }),
             mountain_elevation = PerlinWrapper({
-                offset=0, scale=0.5, spread={x=100, y=100}, seed=planet.seed,
+                offset=0, scale=0.5, spread={x=100, y=100, z=0}, seed=planet.seed,
                 octaves=3, persist=0.5, lacunarity=2.0, flags="defaults"
             }),
             cliff_elevation = PerlinWrapper({
-                offset=0, scale=0.5, spread={x=80, y=80}, seed=planet.seed,
+                offset=0, scale=0.5, spread={x=80, y=80, z=0}, seed=planet.seed,
                 octaves=2, persist=0.5, lacunarity=3.0, flags="defaults"
             }),
             terrain_roughness = PerlinWrapper({
-                offset=0, scale=0.5, spread={x=16, y=16}, seed=planet.seed,
+                offset=0, scale=0.5, spread={x=16, y=16, z=0}, seed=planet.seed,
                 octaves=3, persist=0.5, lacunarity=2.0, flags="defaults"
             })
         }

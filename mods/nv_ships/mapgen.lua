@@ -1,5 +1,5 @@
 local function post_processing_callback(minp, maxp, area, offset, A, A1, A2, mapping, planet, ground_buffer)
-    local f = io.open(minetest.get_worldpath() .. "/nv_ships.players_list", "rt")
+    local f = io.open(minetest.get_worldpath() .. "/nv_ships.players_list", "r")
     local players_list = minetest.deserialize(f:read())
     f:close()
     for name, player_data in pairs(players_list) do

@@ -2,17 +2,22 @@
 ## [0.5.0] - unreleased
 ### Added
  - Mods `nv_ores`, `nv_inventory` and `nv_crafting`.
- - 29 new nodes.
- - 12 new items.
+ - 32 new nodes.
+ - 13 new items.
  - An inventory tab in the menu.
  - Crafting in-hand and in various stations.
  - Ores, as veins and surface deposits.
  - Nodes for construction, lighting and decoration.
  - Beds, for sleeping through the night.
+ - Explosives, for faster mining.
 
 ### Changed
  - Reworked cave generation once again, making them larger and less homogeneously distributed.
  - Tweaked cliffs so they expose more stone.
+
+### Fixed
+- Invalid file mode errors in latest Luanti versions.
+- Fatal error in Perlin noise generation.
 
 ## [0.4.2] - unreleased
 ### Performance

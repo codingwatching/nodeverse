@@ -28,10 +28,10 @@ function nv_planetgen.pass_final(
 
     local G = PcgRandom(5683749)
     
-    local f = io.open(minetest.get_worldpath() .. "/nv_planetgen.random_yrot_nodes", "rt")
+    local f = io.open(minetest.get_worldpath() .. "/nv_planetgen.random_yrot_nodes", "r")
     local random_yrot_nodes = minetest.deserialize(f:read())
     f:close()
-    f = io.open(minetest.get_worldpath() .. "/nv_planetgen.color_multiplier", "rt")
+    f = io.open(minetest.get_worldpath() .. "/nv_planetgen.color_multiplier", "r")
     local color_multiplier = minetest.deserialize(f:read())
     f:close()
 

@@ -11,7 +11,7 @@ dofile(minetest.get_modpath("nv_flora") .. "/branched_plants.lua")
 dofile(minetest.get_modpath("nv_flora") .. "/vines.lua")
 dofile(minetest.get_modpath("nv_flora") .. "/lilypads.lua")
 
-local f = io.open(minetest.get_worldpath() .. "/nv_flora.node_types", "rt")
+local f = io.open(minetest.get_worldpath() .. "/nv_flora.node_types", "r")
 nv_flora.node_types = minetest.deserialize(f:read())
 f:close()
 

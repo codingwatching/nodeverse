@@ -36,7 +36,7 @@ function nv_planetgen.register_post_processing(callback)
 end
 
 local function planet_from_mapping(mapping)
-    local f = io.open(minetest.get_worldpath() .. "/nv_planetgen.planet_dictionary", "rt")
+    local f = io.open(minetest.get_worldpath() .. "/nv_planetgen.planet_dictionary", "r")
     local planet_dictionary = minetest.deserialize(f:read())
     f:close()
     local planet = planet_dictionary[mapping.seed]
@@ -209,7 +209,7 @@ local function mapgen_callback(VM, minp, maxp, blockseed)
     local not_generated_boxes = {{minp = minp, maxp = maxp}}
 
     -- Find mapping(s) for the generated region
-    local f = io.open(minetest.get_worldpath() .. "/nv_planetgen.planet_mappings", "rt")
+    local f = io.open(minetest.get_worldpath() .. "/nv_planetgen.planet_mappings", "r")
     local planet_mappings = minetest.deserialize(f:read())
     f:close()
     for key, mapping in pairs(planet_mappings) do

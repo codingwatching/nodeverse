@@ -5,7 +5,7 @@ end
 dofile(minetest.get_modpath("nv_ores") .. "/large_veins.lua")
 dofile(minetest.get_modpath("nv_ores") .. "/surface_deposits.lua")
 
-local f = io.open(minetest.get_worldpath() .. "/nv_ores.node_types", "rt")
+local f = io.open(minetest.get_worldpath() .. "/nv_ores.node_types", "r")
 nv_ores.node_types = minetest.deserialize(f:read())
 f:close()
 

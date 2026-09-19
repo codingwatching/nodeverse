@@ -86,6 +86,8 @@ function nv_ores.get_large_vein_meta(seed, index)
             halite = 80,
             -- Magnesium ores
             brucite = 50,
+            -- Potassium/nitrate ores
+            niter = 50,
             -- Carbon ores
             anthracite = 40,
         })

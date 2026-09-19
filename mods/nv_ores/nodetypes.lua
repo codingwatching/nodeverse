@@ -453,6 +453,40 @@ local function register_ores()
             groups = {cracky = 3},
         }, 4
     )
+    
+    -- NITER
+    -- KNO3
+    register_node(
+        "niter", {
+            drawtype = "normal",
+            visual_scale = 1.0,
+            tiles = {
+                "nv_niter_top.png",
+                "nv_niter.png^[transformR180",
+                "nv_niter.png^[transformR180",
+                "nv_niter.png^[transformFX",
+                "nv_niter.png",
+                "nv_niter.png"
+            },
+            overlay_tiles = {
+                "",
+                "",
+                {name = "nv_ore_overlay.png"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png"}
+            },
+            use_texture_alpha = "blend",
+            paramtype = "light",
+            paramtype2 = "facedir",
+            place_param2 = 0,
+            sunlight_propagates = false,
+            walkable = true,
+            buildable_to = false,
+            drop = "nv_ores:potassium_nitrate",
+            groups = {cracky = 3},
+        }, 4
+    )
 end
 
 local function register_surface_ores()

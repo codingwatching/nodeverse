@@ -62,6 +62,12 @@ minetest.register_craftitem("nv_ores:magnesium_hydroxide", {
     inventory_image = "nv_magnesium_hydroxide.png",
 })
 
+minetest.register_craftitem("nv_ores:potassium_nitrate", {
+    description = "Potassium nitrate",
+    short_description = "Potassium nitrate",
+    inventory_image = "nv_potassium_nitrate.png",
+})
+
 minetest.register_craftitem("nv_ores:sulfur_pieces", {
     description = "Sulfur",
     short_description = "Sulfur",

@@ -77,6 +77,40 @@ end
 
 nv_gui.register_callback("anvil", anvil_receive_fields_callback)
 
+local function start_explosion(pos, radius)
+    local start_pos = vector.add(pos, {x = -radius, y = -radius, z = -radius})
+    local end_pos = vector.add(pos, {x = radius, y = radius, z = radius})
+    local vm = core.get_voxel_manip()
+    start_pos, end_pos = vm:read_from_map(start_pos, end_pos)
+    local data = vm:get_data()
+    local param2 = vm:get_param2_data()
+    va = VoxelArea(start_pos, end_pos)
+    for z = -radius, radius do
+        for y = -radius, radius do
+            for x = -radius, radius do
+                if math.sqrt(x*x + y*y + z*z) <= radius then
+                    i = va:index(pos.x + x, pos.y + y, pos.z + z)
+                    print(i)
+                    local id = data[i]
+                    if id ~= core.CONTENT_AIR then
+                        local name = core.get_name_from_content_id(id)
+                        local node = core.registered_nodes[name]
+                        groups = node.groups
+                        if not groups.nv_ships then
+                            data[i] = core.CONTENT_AIR
+                            param2[i] = 0
+                        end
+                    end
+                end
+            end
+        end
+    end
+    vm:set_data(data)
+    vm:set_param2_data(param2)
+    vm:write_to_map(true)
+    vm:close()
+end
+
 minetest.register_node(
     "nv_crafting:furnace1", {
         drawtype = "mesh",
@@ -528,11 +562,11 @@ minetest.register_node(
         visual_scale = 1.0,
         tiles = {
             "nv_soda_glass.png^[multiply:#4a4",
-            "nv_soda_glass.png",
-            "nv_soda_glass.png^[transformR180",
-            "nv_soda_glass.png^[transformR90",
-            "nv_soda_glass.png^[transformR270",
-            "nv_soda_glass.png",
+            "nv_soda_glass.png^[multiply:#4a4",
+            "nv_soda_glass.png^[transformR180^[multiply:#4a4",
+            "nv_soda_glass.png^[transformR90^[multiply:#4a4",
+            "nv_soda_glass.png^[transformR270^[multiply:#4a4",
+            "nv_soda_glass.png^[multiply:#4a4",
         },
         use_texture_alpha = "blend",
         paramtype = "light",
@@ -552,11 +586,11 @@ minetest.register_node(
         visual_scale = 1.0,
         tiles = {
             "nv_soda_glass.png^[multiply:#c95",
-            "nv_soda_glass.png",
-            "nv_soda_glass.png^[transformR180",
-            "nv_soda_glass.png^[transformR90",
-            "nv_soda_glass.png^[transformR270",
-            "nv_soda_glass.png",
+            "nv_soda_glass.png^[multiply:#c95",
+            "nv_soda_glass.png^[transformR180^[multiply:#c95",
+            "nv_soda_glass.png^[transformR90^[multiply:#c95",
+            "nv_soda_glass.png^[transformR270^[multiply:#c95",
+            "nv_soda_glass.png^[multiply:#c95",
         },
         use_texture_alpha = "blend",
         paramtype = "light",
@@ -567,6 +601,47 @@ minetest.register_node(
         groups = {cracky = 3},
         description = "Orange glass",
         short_description = "Orange glass",
+    }
+)
+
+minetest.register_node(
+    "nv_crafting:explosive", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_explosive_top.png",
+            "nv_explosive_top.png",
+            "nv_explosive.png",
+            "nv_explosive.png^[transformFX",
+            "nv_explosive.png^[transformFX",
+            "nv_explosive.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {choppy = 3, explody = 2},
+        on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+            timer = core.get_node_timer(pos)
+            timer:start(5.0)
+            core.add_particlespawner({
+                amount = 100,
+                time = 5.0,
+                size = 1,
+                texture = "nv_smoke_particle.png",
+                pos = pos,
+                vel = {
+                    min = {x = -0.5, y = 2, z = -0.5},
+                    max = {x = 0.5, y = 2, z = 0.5},
+                },
+            })
+        end,
+        on_timer = function(pos, elapsed, node, timeout)
+            start_explosion(pos, 4)
+        end,
+        description = "Explosive",
+        short_description = "Explosive",
     }
 )
 
@@ -804,5 +879,17 @@ if nv_planetgen then
             },
             level = 2,
         })
+        if nv_flora then
+            nv_inventory.register_manual_recipe({
+                output = "nv_crafting:explosive 3",
+                type = "shapeless",
+                recipe = {
+                    "nv_ores:potassium_nitrate 1",
+                    "nv_ores:carbon 1",
+                    "nv_ores:sulfur_pieces 1",
+                    "nv_flora:polymer_fiber 1",
+                },
+            })
+        end
     end
 end
