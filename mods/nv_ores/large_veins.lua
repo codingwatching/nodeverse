@@ -90,6 +90,8 @@ function nv_ores.get_large_vein_meta(seed, index)
             niter = 50,
             -- Carbon ores
             anthracite = 40,
+            -- Cobalt ores
+            erythrite = 30,
         })
     end
     r.node = nv_ores.node_types[r.node]

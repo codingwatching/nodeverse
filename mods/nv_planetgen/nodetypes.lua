@@ -335,6 +335,9 @@ local function register_liquid_nodes()
             liquid_alternative_source = "nv_planetgen:water" .. n,
             liquid_viscosity = 1,
             waving = 3,
+            groups = {
+                water = 1,
+            },
         } end
     )
     -- 32 water colors as nodetype

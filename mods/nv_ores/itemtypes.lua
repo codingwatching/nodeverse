@@ -38,12 +38,6 @@ minetest.register_craftitem("nv_ores:aluminium_hydroxide", {
     inventory_image = "nv_aluminium_hydroxide.png",
 })
 
-minetest.register_craftitem("nv_ores:aluminium_oxide", {
-    description = "Aluminium oxide",
-    short_description = "Aluminium oxide",
-    inventory_image = "nv_aluminium_oxide.png",
-})
-
 minetest.register_craftitem("nv_ores:calcium_carbonate", {
     description = "Calcium carbonate",
     short_description = "Calcium carbonate",
@@ -66,6 +60,12 @@ minetest.register_craftitem("nv_ores:potassium_nitrate", {
     description = "Potassium nitrate",
     short_description = "Potassium nitrate",
     inventory_image = "nv_potassium_nitrate.png",
+})
+
+minetest.register_craftitem("nv_ores:cobalt_arsenate", {
+    description = "Cobalt arsenate",
+    short_description = "Cobalt arsenate",
+    inventory_image = "nv_cobalt_arsenate.png",
 })
 
 minetest.register_craftitem("nv_ores:sulfur_pieces", {

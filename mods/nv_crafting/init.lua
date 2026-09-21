@@ -296,6 +296,35 @@ minetest.register_node(
 )
 
 minetest.register_node(
+    "nv_crafting:blue_brick", {
+        drawtype = "normal",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_blue_brick.png",
+            "nv_blue_brick.png",
+            "nv_blue_brick.png",
+            "nv_blue_brick.png",
+            "nv_blue_brick.png",
+            "nv_blue_brick.png",
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sounds = {
+            footstep = {
+                name = "nv_step_stone", gain = 0.4, pitch = 1
+            }
+        },
+        sunlight_propagates = false,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        description = "Blue brick",
+        short_description = "Blue brick",
+    }
+)
+
+minetest.register_node(
     "nv_crafting:concrete", {
         drawtype = "normal",
         visual_scale = 1.0,
@@ -605,6 +634,30 @@ minetest.register_node(
 )
 
 minetest.register_node(
+    "nv_crafting:glass_blue", {
+        drawtype = "glasslike",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_soda_glass.png^[multiply:#46a",
+            "nv_soda_glass.png^[multiply:#46a",
+            "nv_soda_glass.png^[transformR180^[multiply:#46a",
+            "nv_soda_glass.png^[transformR90^[multiply:#46a",
+            "nv_soda_glass.png^[transformR270^[multiply:#46a",
+            "nv_soda_glass.png^[multiply:#46a",
+        },
+        use_texture_alpha = "blend",
+        paramtype = "light",
+        paramtype2 = "facedir",
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 3},
+        description = "Blue glass",
+        short_description = "Blue glass",
+    }
+)
+
+minetest.register_node(
     "nv_crafting:explosive", {
         drawtype = "normal",
         visual_scale = 1.0,
@@ -651,10 +704,63 @@ minetest.register_craftitem("nv_crafting:basic_fuel", {
     inventory_image = "nv_basic_fuel.png",
 })
 
+minetest.register_craftitem("nv_crafting:aluminium_oxide", {
+    description = "Aluminium oxide",
+    short_description = "Aluminium oxide",
+    inventory_image = "nv_aluminium_oxide.png",
+})
+
 minetest.register_craftitem("nv_crafting:iron", {
     description = "Iron",
     short_description = "Iron",
     inventory_image = "nv_iron.png",
+})
+
+minetest.register_craftitem("nv_crafting:bottle", {
+    description = "Bottle",
+    short_description = "Bottle",
+    inventory_image = "nv_bottle.png",
+    pointabilities = {
+        nodes = {
+            ["group:water"] = true,
+            ["group:"] = false,
+        },
+    },
+    on_use = function(itemstack, user, pointed_thing)
+        if pointed_thing.type == "node" then
+            local pos = pointed_thing.under
+            local node = core.get_node(pos)
+            if core.registered_nodes[node.name].groups.water then
+                core.set_node(pos, {name = "air", param1 = 0, param2 = 0})
+                local count = itemstack:get_count() - 1
+                if count > 0 then
+                    local inv = minetest.get_inventory({type = "player", name = user:get_player_name()})
+	                inv:add_item("main", ItemStack("nv_crafting:water_bottle"))
+                    return ItemStack(string.format("nv_crafting:bottle %d", count))
+                else
+                    return ItemStack("nv_crafting:water_bottle")
+                end
+            end
+        end
+    end,
+})
+
+minetest.register_craftitem("nv_crafting:water_bottle", {
+    description = "Water bottle",
+    short_description = "Water bottle",
+    inventory_image = "nv_water_bottle.png",
+})
+
+minetest.register_craftitem("nv_crafting:acid_bottle", {
+    description = "Acid bottle",
+    short_description = "Acid bottle",
+    inventory_image = "nv_acid_bottle.png",
+})
+
+minetest.register_craftitem("nv_crafting:cobalt_oxide", {
+    description = "Cobalt oxide",
+    short_description = "Cobalt oxide",
+    inventory_image = "nv_cobalt_oxide.png",
 })
 
 if nv_planetgen then
@@ -688,7 +794,7 @@ if nv_planetgen then
     
     if nv_ores then
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:basic_fuel",
+            output = "nv_crafting:basic_fuel 2",
             type = "shapeless",
             recipe = {
                 "nv_ores:carbon 1",
@@ -696,7 +802,7 @@ if nv_planetgen then
         })
         
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:basic_fuel",
+            output = "nv_crafting:basic_fuel 2",
             type = "shapeless",
             recipe = {
                 "nv_ores:sulfur_pieces 3",
@@ -704,7 +810,7 @@ if nv_planetgen then
         })
     
         nv_crafting.register_furnace_recipe({
-            output = "nv_ores:aluminium_oxide",
+            output = "nv_crafting:aluminium_oxide",
             type = "shapeless",
             recipe = {
                 "nv_ores:aluminium_hydroxide 1",
@@ -716,7 +822,7 @@ if nv_planetgen then
     
     if nv_flora then
         nv_inventory.register_manual_recipe({
-            output = "nv_crafting:basic_fuel",
+            output = "nv_crafting:basic_fuel 2",
             type = "shapeless",
             recipe = {
                 "nv_flora:polymer_planks 1",
@@ -756,7 +862,7 @@ if nv_planetgen then
             output = "nv_crafting:concrete 2",
             type = "shapeless",
             recipe = {
-                "nv_ores:aluminium_oxide 1",
+                "nv_crafting:aluminium_oxide 1",
                 "nv_ores:calcium_carbonate 1",
             },
         })
@@ -765,7 +871,7 @@ if nv_planetgen then
             output = "nv_crafting:gray_brick 2",
             type = "shapeless",
             recipe = {
-                "nv_ores:aluminium_oxide 1",
+                "nv_crafting:aluminium_oxide 1",
                 "nv_planetgen:crude_silicate 1",
             },
         })
@@ -774,7 +880,7 @@ if nv_planetgen then
             output = "nv_crafting:red_brick 2",
             type = "shapeless",
             recipe = {
-                "nv_ores:aluminium_oxide 1",
+                "nv_crafting:aluminium_oxide 1",
                 "nv_ores:iron_oxide 1",
             },
         })
@@ -783,8 +889,17 @@ if nv_planetgen then
             output = "nv_crafting:black_brick 2",
             type = "shapeless",
             recipe = {
-                "nv_ores:aluminium_oxide 1",
+                "nv_crafting:aluminium_oxide 1",
                 "nv_ores:carbon 1",
+            },
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:blue_brick 2",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:aluminium_oxide 1",
+                "nv_crafting:cobalt_oxide 1",
             },
         })
         
@@ -879,6 +994,27 @@ if nv_planetgen then
             },
             level = 2,
         })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:glass_blue 2",
+            type = "shapeless",
+            recipe = {
+                "nv_planetgen:crude_silicate 1",
+                "nv_ores:sodium_chloride 1",
+                "nv_crafting:cobalt_oxide 1",
+                "nv_crafting:basic_fuel 1",
+            },
+            level = 2,
+        })
+        
+        nv_inventory.register_manual_recipe({
+            output = "nv_crafting:bottle 4",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:bottle 1",
+            },
+        })
+        
         if nv_flora then
             nv_inventory.register_manual_recipe({
                 output = "nv_crafting:explosive 3",
@@ -891,5 +1027,27 @@ if nv_planetgen then
                 },
             })
         end
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:acid_bottle 1",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:sulfur_pieces 1",
+                "nv_ores:potassium_nitrate 1",
+                "nv_crafting:water_bottle 1",
+            },
+            level = 1,
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:cobalt_oxide 1",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:cobalt_arsenate 1",
+                "nv_crafting:acid_bottle 1",
+                "nv_crafting:basic_fuel 1",
+            },
+            level = 2,
+        })
     end
 end
