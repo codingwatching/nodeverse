@@ -16,7 +16,7 @@ any following versions will make breaking changes to the core game.
 A universe with tens of thousands of planets is created. Each has its own terrain
 shapes, climate, colors, flora...
 
-The player starts out flying a small, boring spaceship near the ground. Pressing
+The player starts out flying a small spaceship near the ground. Pressing
 'sneak' (shift by default) will land it. After landing, it's possible to unboard
 ('move') or lift off ('jump'). A ship can be boarded by pressing 'use' (right-
 click by default) on any of its nodes.
@@ -26,9 +26,7 @@ to travel to other planets and stars via the inventory GUI. Information about ea
 will be shown as well, plus a list of any discovered planets and flora.
 To return to the planet, descend into it ('sneak').
 
-Most planets have a colorful piñata standing somewhere over their surface.
-Finding and breaking it affords new spaceship parts as random loot.
-These parts can be used to modify one's ship or create a new one.
+There are several ores, items and buildable technologies to explore.
 
 ## Mods
 This is a list of the components that make up this game. Each of these mods can
@@ -47,9 +45,7 @@ Name | Dependencies | Description
 *optional dependency
 
 ## TODO
- * Add minerals and ores
  * Add fauna
  * Add player mechanics
- * Add basic items
- * Add basic crafting
+ * Add more structures
  * Improve all of the above

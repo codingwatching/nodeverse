@@ -1,5 +1,8 @@
 # Changelog
-## [0.5.0] - unreleased
+## [0.5.0] - 25-09-2026
+This is a major release; it breaks compatibility with existing worlds and adds
+many new features to the game.
+
 ### Added
  - Mods `nv_ores`, `nv_inventory` and `nv_crafting`.
  - 35 new nodes.
@@ -19,7 +22,6 @@
 - Invalid file mode errors in latest Luanti versions.
 - Fatal error in Perlin noise generation.
 
-## [0.4.2] - unreleased
 ### Performance
  - Added support for the new async mapgen API in Minetest 5.9, with fallback for older versions.
 
