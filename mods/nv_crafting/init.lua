@@ -180,6 +180,40 @@ minetest.register_node(
 )
 
 minetest.register_node(
+    "nv_crafting:furnace3", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_furnace3.png"
+        },
+        mesh = "nv_furnace3.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.5 + 0.125, -0.5, -0.5 + 0.125, 0.5 - 0.125, 0.5, 0.5 - 0.125}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.5 + 0.125, -0.5, -0.5 + 0.125, 0.5 - 0.125, 0.5, 0.5 - 0.125}
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        sunlight_propagates = true,
+        walkable = true,
+        buildable_to = false,
+        groups = {cracky = 1},
+        on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+            nv_gui.show_formspec_raw(clicker,
+                get_furnace_formspec(clicker, 3),
+                "furnace"
+            )
+        end,
+        description = "Electric furnace",
+        short_description = "Electric furnace",
+    }
+)
+
+minetest.register_node(
     "nv_crafting:silicate_sand", {
         drawtype = "normal",
         visual_scale = 1.0,
@@ -1166,5 +1200,16 @@ if nv_planetgen then
             },
             level = 2,
         })
+        
+        nv_inventory.register_manual_recipe({
+                output = "nv_crafting:furnace3",
+                type = "shapeless",
+                recipe = {
+                    "nv_crafting:concrete 4",
+                    "nv_ores:magnesium_hydroxide 2",
+                    "nv_crafting:molybdenum 2",
+                    "nv_crafting:battery 1",
+                },
+            })
     end
 end
