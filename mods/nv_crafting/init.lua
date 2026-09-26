@@ -1123,7 +1123,7 @@ if nv_planetgen then
             output = "nv_crafting:bottle 4",
             type = "shapeless",
             recipe = {
-                "nv_crafting:bottle 1",
+                "nv_crafting:glass 1",
             },
         })
         
