@@ -521,6 +521,74 @@ local function register_ores()
             groups = {cracky = 3},
         }, 4
     )
+    
+    -- PETALITE
+    -- LiAlSi4O10
+    register_node(
+        "petalite", {
+            drawtype = "glasslike",
+            visual_scale = 1.0,
+            tiles = {
+                "nv_petalite.png",
+                "nv_petalite.png^[transformR180",
+                "nv_petalite.png^[transformR180",
+                "nv_petalite.png^[transformR90",
+                "nv_petalite.png",
+                "nv_petalite.png^[transformR90"
+            },
+            overlay_tiles = {
+                "",
+                "",
+                {name = "nv_ore_overlay.png"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png"}
+            },
+            use_texture_alpha = "blend",
+            paramtype = "light",
+            paramtype2 = "facedir",
+            place_param2 = 0,
+            sunlight_propagates = true,
+            walkable = true,
+            buildable_to = false,
+            drop = "nv_ores:lithium_oxide",
+            groups = {cracky = 1},
+        }, 4
+    )
+    
+    -- MOLYBDITE
+    -- MoO3
+    register_node(
+        "molybdite", {
+            drawtype = "glasslike",
+            visual_scale = 1.0,
+            tiles = {
+                "nv_molybdite.png",
+                "nv_molybdite.png^[transformR180",
+                "nv_molybdite.png^[transformR180",
+                "nv_molybdite.png^[transformR90",
+                "nv_molybdite.png",
+                "nv_molybdite.png^[transformR90"
+            },
+            overlay_tiles = {
+                "",
+                "",
+                {name = "nv_ore_overlay.png"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png^[transformFX"},
+                {name = "nv_ore_overlay.png"}
+            },
+            use_texture_alpha = "blend",
+            paramtype = "light",
+            paramtype2 = "facedir",
+            place_param2 = 0,
+            sunlight_propagates = false,
+            walkable = true,
+            buildable_to = false,
+            drop = "nv_ores:molybdenum_oxide",
+            groups = {cracky = 2},
+        }, 4
+    )
 end
 
 local function register_surface_ores()

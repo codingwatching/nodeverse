@@ -466,6 +466,35 @@ minetest.register_node(
 )
 
 minetest.register_node(
+    "nv_crafting:lamp_white", {
+        drawtype = "mesh",
+        visual_scale = 1.0,
+        tiles = {
+            "nv_lamp_white.png"
+        },
+        mesh = "nv_lamp.obj",
+        selection_box = {
+            type = "fixed",
+            fixed = {-0.125, -0.5, -0.125, 0.125, 0.125, 0.125}
+        },
+        collision_box = {
+            type = "fixed",
+            fixed = {-0.125, -0.5, -0.125, 0.125, 0.125, 0.125}
+        },
+        paramtype = "light",
+        paramtype2 = "facedir",
+        place_param2 = 0,
+        light_source = 16,
+        sunlight_propagates = true,
+        walkable = false,
+        buildable_to = false,
+        groups = {choppy = 2},
+        description = "White lamp",
+        short_description = "White lamp",
+    }
+)
+
+minetest.register_node(
     "nv_crafting:anvil", {
         drawtype = "mesh",
         visual_scale = 1.0,
@@ -740,6 +769,16 @@ minetest.register_craftitem("nv_crafting:bottle", {
                 else
                     return ItemStack("nv_crafting:water_bottle")
                 end
+            elseif core.registered_nodes[node.name].groups.hydrocarbon then
+                core.set_node(pos, {name = "air", param1 = 0, param2 = 0})
+                local count = itemstack:get_count() - 1
+                if count > 0 then
+                    local inv = minetest.get_inventory({type = "player", name = user:get_player_name()})
+	                inv:add_item("main", ItemStack("nv_crafting:hydrocarbon_bottle"))
+                    return ItemStack(string.format("nv_crafting:bottle %d", count))
+                else
+                    return ItemStack("nv_crafting:hydrocarbon_bottle")
+                end
             end
         end
     end,
@@ -749,6 +788,12 @@ minetest.register_craftitem("nv_crafting:water_bottle", {
     description = "Water bottle",
     short_description = "Water bottle",
     inventory_image = "nv_water_bottle.png",
+})
+
+minetest.register_craftitem("nv_crafting:hydrocarbon_bottle", {
+    description = "Hydrocarbon bottle",
+    short_description = "Hydrocarbon bottle",
+    inventory_image = "nv_hydrocarbon_bottle.png",
 })
 
 minetest.register_craftitem("nv_crafting:acid_bottle", {
@@ -761,6 +806,30 @@ minetest.register_craftitem("nv_crafting:cobalt_oxide", {
     description = "Cobalt oxide",
     short_description = "Cobalt oxide",
     inventory_image = "nv_cobalt_oxide.png",
+})
+
+minetest.register_craftitem("nv_crafting:magnesium", {
+    description = "Magnesium",
+    short_description = "Magnesium",
+    inventory_image = "nv_magnesium.png",
+})
+
+minetest.register_craftitem("nv_crafting:lithium", {
+    description = "Lithium",
+    short_description = "Lithium",
+    inventory_image = "nv_lithium.png",
+})
+
+minetest.register_craftitem("nv_crafting:battery", {
+    description = "Battery",
+    short_description = "Battery",
+    inventory_image = "nv_battery.png",
+})
+
+minetest.register_craftitem("nv_crafting:molybdenum", {
+    description = "Molybdenum",
+    short_description = "Molybdenum",
+    inventory_image = "nv_molybdenum.png",
 })
 
 if nv_planetgen then
@@ -960,6 +1029,15 @@ if nv_planetgen then
             },
         })
         
+        nv_crafting.register_anvil_recipe({
+            output = "nv_crafting:lamp_white",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:lamp 1",
+                "nv_crafting:magnesium 1",
+            },
+        })
+        
         nv_crafting.register_furnace_recipe({
             output = "nv_crafting:glass 2",
             type = "shapeless",
@@ -1046,6 +1124,45 @@ if nv_planetgen then
                 "nv_ores:cobalt_arsenate 1",
                 "nv_crafting:acid_bottle 1",
                 "nv_crafting:basic_fuel 1",
+            },
+            level = 2,
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:magnesium",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:magnesium_hydroxide 1",
+                "nv_ores:carbon 1",
+            },
+            level = 2,
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:lithium",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:lithium_oxide 1",
+                "nv_crafting:magnesium 1",
+            },
+            level = 1,
+        })
+        
+        nv_crafting.register_anvil_recipe({
+            output = "nv_crafting:battery",
+            type = "shapeless",
+            recipe = {
+                "nv_crafting:lithium 1",
+                "nv_crafting:cobalt_oxide 1",
+            },
+        })
+        
+        nv_crafting.register_furnace_recipe({
+            output = "nv_crafting:molybdenum",
+            type = "shapeless",
+            recipe = {
+                "nv_ores:molybdenum_oxide 1",
+                "nv_crafting:hydrocarbon_bottle 1",
             },
             level = 2,
         })

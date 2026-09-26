@@ -433,6 +433,9 @@ local function register_liquid_nodes()
             liquid_viscosity = 0,
             damage_per_second = 2 * 2,
             waving = 3,
+            groups = {
+                hydrocarbon = 1,
+            },
         } end
     )
     -- Single variant

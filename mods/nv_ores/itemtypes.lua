@@ -68,6 +68,18 @@ minetest.register_craftitem("nv_ores:cobalt_arsenate", {
     inventory_image = "nv_cobalt_arsenate.png",
 })
 
+minetest.register_craftitem("nv_ores:lithium_oxide", {
+    description = "Lithium oxide",
+    short_description = "Lithium oxide",
+    inventory_image = "nv_lithium_oxide.png",
+})
+
+minetest.register_craftitem("nv_ores:molybdenum_oxide", {
+    description = "Molybdenum oxide",
+    short_description = "Molybdenum oxide",
+    inventory_image = "nv_molybdenum_oxide.png",
+})
+
 minetest.register_craftitem("nv_ores:sulfur_pieces", {
     description = "Sulfur",
     short_description = "Sulfur",

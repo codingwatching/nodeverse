@@ -92,6 +92,10 @@ function nv_ores.get_large_vein_meta(seed, index)
             anthracite = 40,
             -- Cobalt ores
             erythrite = 30,
+            -- Lithium ores
+            petalite = 30,
+            -- Molybdenum ores
+            molybdite = 20,
         })
     end
     r.node = nv_ores.node_types[r.node]
