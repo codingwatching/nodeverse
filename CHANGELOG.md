@@ -8,6 +8,10 @@ many new features to the game.
  - 4 new node.
  - 7 new items.
 
+## [0.5.1] - unreleased
+### Fixed
+- Bottle recipe.
+
 ## [0.5.0] - 25-09-2026
 This is a major release; it breaks compatibility with existing worlds and adds
 many new features to the game.
