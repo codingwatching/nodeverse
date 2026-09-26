@@ -1188,6 +1188,7 @@ if nv_planetgen then
             recipe = {
                 "nv_crafting:lithium 1",
                 "nv_crafting:cobalt_oxide 1",
+                "nv_crafting:iron 1",
             },
         })
         

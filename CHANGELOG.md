@@ -5,8 +5,8 @@ This is a major release; it breaks compatibility with existing worlds and adds
 many new features to the game.
 
 ### Added
- - 1 new node.
- - 3 new items.
+ - 4 new node.
+ - 7 new items.
 
 ## [0.5.0] - 25-09-2026
 This is a major release; it breaks compatibility with existing worlds and adds
